@@ -6,29 +6,24 @@ import { Repository } from 'typeorm';
 import { compare } from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { Users } from 'src/users.json';
-import { LoginSiigo } from 'src/helpers/login_user';
+import { ApiSiigoService } from 'src/api-siigo/api-siigo.service';
+
+
 
 @Injectable()
 export class AuthService {
-
   constructor(
     @InjectRepository(LoginDash) private logiDashRepository: Repository<LoginDash>,
-    private jwtService: JwtService
+    private jwtService: JwtService,
+    private service:ApiSiigoService
   ) { }
 
   async create(createAuthDto: CreateAuthDto) {
 
-
-
     const { log_clave, log_usuario } = createAuthDto;
-
-
 
     const existUser = await this.logiDashRepository.findOneBy({ log_usuario });
     const usuarios = Users
-
-          
-
 
     const autorizated = usuarios.includes(log_usuario)
 
@@ -54,16 +49,12 @@ export class AuthService {
 
     const token = this.jwtService.sign(data_user);
 
-
-    const tokensiggoString = await LoginSiigo() as any;
+    const tokensiggoString = await this.service.Loginsiigo() as any;
 
     const tokens = JSON.parse(tokensiggoString) 
-  
-    
+
     const data = {
       userToken: token,
-      tokensigo:tokens.access_token,
-      scope:tokens.scope,
       data_user
   
     };
@@ -71,5 +62,8 @@ export class AuthService {
     return data;
     
   }
+
+  
+
 
 }

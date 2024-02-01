@@ -23,9 +23,9 @@ export class PayoutService {
       .select([
         'movimiento.merchant_id',
         'movimiento.merchant_name',
-        'ROUND(SUM(movimiento.amount + (movimiento.cost + movimiento.iva)), 2) AS total'
+        'SUM(movimiento.amount) AS total'
       ])
-      .where('movimiento.type_transaction=2')
+      .where('movimiento.type_transaction = 2 ')
       .andWhere(`DATE(movimiento.updated_at) BETWEEN '${initialdate}' AND '${finaldate}'`)
       .andWhere(`movimiento.status=1`)
       .andWhere(`movimiento.currency = "COP"`)

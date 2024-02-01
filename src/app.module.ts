@@ -12,6 +12,9 @@ import { DispersionesModule } from './dispersiones/dispersiones.module';
 import { PayinModule } from './payin/payin.module';
 import { PayoutModule } from './payout/payout.module';
 import { MasivaModule } from './masiva/masiva.module';
+import { ApiSiigoModule } from './api-siigo/api-siigo.module';
+
+
 
 @Module({
   imports: [
@@ -35,7 +38,8 @@ import { MasivaModule } from './masiva/masiva.module';
     DispersionesModule,
     PayinModule,
     PayoutModule,
-    MasivaModule
+    MasivaModule,
+    ApiSiigoModule
     
   ],
   controllers: [AppController],

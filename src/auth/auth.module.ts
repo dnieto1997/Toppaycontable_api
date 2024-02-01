@@ -5,6 +5,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { LoginDash } from 'src/login_dash/entities/login_dash.entity';
 import { JwtModule} from '@nestjs/jwt'
 import { jwtConstants } from './jwt.constants';
+import { ApiSiigoService } from 'src/api-siigo/api-siigo.service';
+
+
 
 @Module({
   imports: [
@@ -16,6 +19,6 @@ import { jwtConstants } from './jwt.constants';
     })
   ],
   controllers: [AuthController],
-  providers: [AuthService],
+  providers: [AuthService,ApiSiigoService],
 })
 export class AuthModule {}
