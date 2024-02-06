@@ -41,6 +41,7 @@ export class PayinService {
     const result = await queryBuilder.getRawMany();
 
 
+
     return result;
 
 

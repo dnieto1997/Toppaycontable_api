@@ -11,7 +11,7 @@ import { Movimiento } from 'src/movimientos/entities/movimiento.entity';
   controllers: [PayoutController],
   providers: [PayoutService],
   imports: [ 
-    TypeOrmModule.forFeature([Masiva,Comparar,Movimiento]),
+    TypeOrmModule.forFeature([Movimiento]),
 
   ]
 })

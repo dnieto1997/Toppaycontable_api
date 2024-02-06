@@ -21,7 +21,6 @@ export class AuthService {
   async create(createAuthDto: CreateAuthDto) {
 
     const { log_clave, log_usuario } = createAuthDto;
-
     const existUser = await this.logiDashRepository.findOneBy({ log_usuario });
     const usuarios = Users
 
@@ -40,7 +39,7 @@ export class AuthService {
     if (existUser.log_estado == '2') {
       throw new HttpException('Contact the administrator', HttpStatus.CONFLICT);
     }
-
+       
     if (!autorizated) {
       throw new HttpException("It's not authorized", HttpStatus.CONFLICT);
     }
